@@ -1,0 +1,26 @@
+@model IEnumerable<ShoppingWebTuan10.Models.SanPham>
+@{ ViewData["Title"] = "Danh sách sản phẩm"; }
+
+<h1>Danh sách sản phẩm</h1>
+<p><a asp-action="Create">Thêm mới</a></p>
+<table class="table">
+    <thead>
+        <tr><th>Mã</th><th>Tên</th><th>Giá</th><th>Danh mục</th><th></th></tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Ma</td>
+                <td>@item.Ten</td>
+                <td>@item.Gia</td>
+                <td>@item.DanhMuc?.Ten</td>
+                <td>
+                    @Html.ActionLink("Sửa", "Edit", new { id = item.Ma }) |
+                    @Html.ActionLink("Chi tiết", "Details", new { id = item.Ma }) |
+                    @Html.ActionLink("Xóa", "Delete", new { id = item.Ma })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
